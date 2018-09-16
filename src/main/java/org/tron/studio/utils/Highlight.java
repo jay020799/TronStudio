@@ -48,7 +48,7 @@ public abstract class Highlight {
         final String code = codeArea.getText();
         final Subscription subscription = codeArea.richChanges()
                 .filter(ch -> !ch.getInserted().equals(ch.getRemoved()))
-                .successionEnds(Duration.ofMillis(500))
+                .successionEnds(Duration.ofMillis(50))
                 .supplyTask(this::computeHighlightingAsync)
                 .awaitLatest(codeArea.richChanges())
                 .filterMap(t -> {
@@ -93,6 +93,7 @@ public abstract class Highlight {
      */
     private void applyHighlighting(final StyleSpans<Collection<String>> highlighting) {
         //System.out.println("highlight");
+
         codeArea.setStyleSpans(0, highlighting);
 
         // Show incorrect spells
@@ -103,7 +104,7 @@ public abstract class Highlight {
             codeArea.setStyleSpans(missInfo.paraNo, missInfo.startNo, spansBuilder.create());
         }
 
-//        MainApplication.showMatchingWords();
+ //       MainApplication.showMatchingWords();
     }
 
     /**
