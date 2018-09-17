@@ -13,7 +13,7 @@ import java.util.Collections;
 import java.util.Optional;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
+import org.tron.studio.MainApplication;
 /**
  * Base of Highlighting.
  *
@@ -48,7 +48,7 @@ public abstract class Highlight {
         final String code = codeArea.getText();
         final Subscription subscription = codeArea.richChanges()
                 .filter(ch -> !ch.getInserted().equals(ch.getRemoved()))
-                .successionEnds(Duration.ofMillis(50))
+                .successionEnds(Duration.ofMillis(70))
                 .supplyTask(this::computeHighlightingAsync)
                 .awaitLatest(codeArea.richChanges())
                 .filterMap(t -> {
@@ -104,7 +104,7 @@ public abstract class Highlight {
             codeArea.setStyleSpans(missInfo.paraNo, missInfo.startNo, spansBuilder.create());
         }
 
- //       MainApplication.showMatchingWords();
+        MainApplication.showMatchingWords();
     }
 
     /**
