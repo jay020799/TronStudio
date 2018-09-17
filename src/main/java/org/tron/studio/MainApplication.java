@@ -53,11 +53,8 @@ public class MainApplication extends Application {
   public static Args cfgArgs;
   public static org.tron.common.application.Application appT;
 
-  final Popup searchPopup1 = new Popup();
   final JFXPopup searchPopup = new JFXPopup();
   private int spacingSize = 3;
-
-  //private List<List<Integer>> matchingPos = new ArrayList<>();
 
   public static class SearchText {
     public List<List<Integer>> matchingPos = new ArrayList<>();
